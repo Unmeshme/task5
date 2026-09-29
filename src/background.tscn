@@ -2,24 +2,23 @@
 
 [ext_resource path="res://assets/PNG/game_background_3/layers/clouds_1.png" type="Texture" id=1]
 [ext_resource path="res://assets/PNG/game_background_3/layers/ground_1.png" type="Texture" id=2]
-[ext_resource path="res://assets/PNG/game_background_3/layers/ground_3.png" type="Texture" id=3]
-[ext_resource path="res://src/camera.gd" type="Script" id=4]
-[ext_resource path="res://assets/PNG/game_background_3/layers/rocks.png" type="Texture" id=5]
+[ext_resource path="res://assets/PNG/game_background_3/layers/rocks.png" type="Texture" id=3]
+[ext_resource path="res://assets/PNG/game_background_3/layers/ground_2.png" type="Texture" id=4]
+[ext_resource path="res://assets/PNG/game_background_3/layers/ground_3.png" type="Texture" id=5]
 [ext_resource path="res://assets/PNG/game_background_3/layers/clouds_2.png" type="Texture" id=6]
-[ext_resource path="res://assets/PNG/game_background_3/layers/ground_2.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1089.5, 21.5 )
 
 [node name="background-test" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-current = true
-script = ExtResource( 4 )
-
 [node name="background" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2( 1, 0 )
+scroll_ignore_camera_zoom = true
 
 [node name="clouds" type="ParallaxLayer" parent="background"]
 motion_scale = Vector2( 0.1, 0 )
-motion_mirroring = Vector2( 1082.88, 0 )
+motion_mirroring = Vector2( 1082, 0 )
 
 [node name="Sprite" type="Sprite" parent="background/clouds"]
 position = Vector2( -2, -3 )
@@ -30,18 +29,18 @@ region_filter_clip = true
 
 [node name="rock" type="ParallaxLayer" parent="background"]
 motion_scale = Vector2( 0.3, 0 )
-motion_mirroring = Vector2( 1079.04, 0 )
+motion_mirroring = Vector2( 1079, 0 )
 
 [node name="Sprite" type="Sprite" parent="background/rock"]
 position = Vector2( -2, 3 )
 scale = Vector2( 0.561979, 0.671296 )
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 centered = false
 region_filter_clip = true
 
 [node name="clouds2" type="ParallaxLayer" parent="background"]
 motion_scale = Vector2( 0.5, 0 )
-motion_mirroring = Vector2( 1082.88, 0 )
+motion_mirroring = Vector2( 1082, 0 )
 
 [node name="Sprite" type="Sprite" parent="background/clouds2"]
 scale = Vector2( 0.563542, 0.668519 )
@@ -51,7 +50,7 @@ region_filter_clip = true
 
 [node name="ground1" type="ParallaxLayer" parent="background"]
 motion_scale = Vector2( 0.6, 0 )
-motion_mirroring = Vector2( 1086.72, 0 )
+motion_mirroring = Vector2( 1086, 0 )
 
 [node name="Sprite" type="Sprite" parent="background/ground1"]
 position = Vector2( -6, 172 )
@@ -62,20 +61,46 @@ region_filter_clip = true
 
 [node name="ground2" type="ParallaxLayer" parent="background"]
 motion_scale = Vector2( 0.8, 0 )
+motion_mirroring = Vector2( 1086, 0 )
 
 [node name="Sprite" type="Sprite" parent="background/ground2"]
 position = Vector2( -6, 172 )
 scale = Vector2( 0.565625, 0.512037 )
-texture = ExtResource( 8 )
+texture = ExtResource( 4 )
 centered = false
 region_filter_clip = true
 
 [node name="ground3" type="ParallaxLayer" parent="background"]
 motion_scale = Vector2( 1, 0 )
+motion_mirroring = Vector2( 1086, 0 )
 
 [node name="Sprite" type="Sprite" parent="background/ground3"]
 position = Vector2( -6, 172 )
 scale = Vector2( 0.565625, 0.512037 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 centered = false
 region_filter_clip = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1086, 740 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1504, -16 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+margin_left = -8.0
+margin_top = 719.0
+margin_right = 19995.0
+margin_bottom = 855.0
+
+[node name="ColorRect2" type="ColorRect" parent="StaticBody2D"]
+margin_left = -15.0
+margin_top = -126.0
+margin_right = 19988.0
+margin_bottom = 10.0
